@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c66db9dbd09ca374c8d496adfc7aa634
-timeCreated: 1514322193
+guid: a95b565e4e108e248a9e2a1d6cbb6ed0
+timeCreated: 1514323922
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Munro Narrow
+  fontName: Munro
   fontNames:
-  - Munro Narrow
+  - Munro
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

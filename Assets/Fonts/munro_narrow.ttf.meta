@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c9dcfff0ca1035d41a14cf6789eed697
-timeCreated: 1514322524
+guid: 3704bd17eeb34cf4d8488e964881600c
+timeCreated: 1514323922
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Joystix
+  fontName: Munro Narrow
   fontNames:
-  - Joystix
+  - Munro Narrow
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
