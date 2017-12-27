@@ -13,7 +13,7 @@ public class ChartController : MonoBehaviour {
 	private int updatesSince = 0;
 	public float updatesPerSecond = 10;
 	float msSince = 0;
-	int time = 0;
+	private int time = 0;
 	public int offsetX = 3;
 	private GameObject outline;
 	private MarketData currData;
@@ -27,6 +27,12 @@ public class ChartController : MonoBehaviour {
 		outline = GameObject.Find ("outline");
 		currData = mc.BitcoinData;
 		print ("FIRST IS " + currData.priceAt(4));
+		time += updatesPerMove;
+		updateChart (0);
+	}
+
+	public int getTime(){
+		return time;
 	}
 
 	void updateChart(int updatesSince){
