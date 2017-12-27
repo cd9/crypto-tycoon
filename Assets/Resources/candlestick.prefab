@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114819221939754900}
   m_Layer: 5
   m_Name: stick
-  m_TagString: Untagged
+  m_TagString: disposable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114027111839391640}
   m_Layer: 5
   m_Name: candle
-  m_TagString: Untagged
+  m_TagString: disposable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
