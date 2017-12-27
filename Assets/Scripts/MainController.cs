@@ -16,6 +16,11 @@ public class MainController : MonoBehaviour {
 	private bool buyEnabled = true;
 	private bool sellEnabled = true;
 	public float disabledTimer = 3.0f;
+	private Text timer_text;
+	public float dayLength = 120;
+	private ChartController cc;
+
+
 
 	public float CurrPrice{
 		get{
@@ -52,6 +57,42 @@ public class MainController : MonoBehaviour {
 		return data;
 	}
 
+	public void IncInc(){
+		//could just divide and multiply but might want other increments later
+		increment *= 10;
+		increment = (float)System.Math.Round (increment, 3);
+		if (increment >= 1000)
+			increment = 1000;
+		updateInc ();
+	}
+
+	public void deIncInc(){
+		increment = increment / 10.0f;
+		if (increment <= 0.01f)
+			increment = 0.01f;
+		updateInc ();
+	}
+
+	void updateInc(){
+		string imgname = "";
+		if (increment == 0.01f) {
+			imgname = "button_0_01";
+		} else if (increment == 0.1f) {
+			imgname = "button_0_1";
+		} else if (increment == 1) {
+			imgname = "button_1";
+		} else if (increment == 10) {
+			imgname = "button_10";
+		} else if (increment == 100) {
+			imgname = "button_100";
+		} else if (increment == 1000) {
+			imgname = "button_1000";
+		} else {
+			print (increment);
+		}
+		GameObject.Find ("button_inc").GetComponent<Image> ().sprite = Resources.Load<Sprite> (imgname);
+	}
+
 	// Use this for initialization
 	void Start () {
 		USD = GameObject.Find ("b_usd").GetComponent<Text> ();
@@ -59,6 +100,8 @@ public class MainController : MonoBehaviour {
 		ETH = GameObject.Find ("b_eth").GetComponent<Text> ();
 		LTC = GameObject.Find ("b_ltc").GetComponent<Text> ();
 		setBalances ();
+		timer_text = GameObject.Find ("timer").GetComponent<Text> ();
+		cc = GameObject.Find ("ChartController").GetComponent<ChartController> ();
 
 	}
 
@@ -75,7 +118,7 @@ public class MainController : MonoBehaviour {
 			usdbalance -= increment * currPrice;
 			btcbalance += increment;
 			setBalances ();
-			StartCoroutine (disable ());
+			StartCoroutine (disable ("buying"));
 		}
 	}
 
@@ -84,11 +127,11 @@ public class MainController : MonoBehaviour {
 			usdbalance += increment * currPrice;
 			btcbalance -= increment;
 			setBalances ();
-			StartCoroutine (disable ());
+			StartCoroutine (disable ("selling"));
 		}
 	}
 
-	private IEnumerator disable(){
+	private IEnumerator disable(string t){
 		buyEnabled = false;
 		sellEnabled = false;
 		Color dark = new Color32 (156, 156, 156, 255);
@@ -98,9 +141,14 @@ public class MainController : MonoBehaviour {
 		GameObject.Find ("button_sell").GetComponent<Image>().color = dark;
 		float i = 0;
 		while (i < disabledTimer) {
-			yield return new WaitForSeconds (0.01f);
+			yield return new WaitForSeconds (0.001f);
 			i = i + 0.01f;
+			timer_text.text = t;
+			for (float j = 0; j <= disabledTimer-i; j+=0.5f) {
+				timer_text.text = timer_text.text + ".";
+			}
 		}
+		timer_text.text = "";
 		GameObject.Find ("button_buy").GetComponent<Image> ().color = white;
 		GameObject.Find ("button_sell").GetComponent<Image> ().color = white;
 		buyEnabled = true;
@@ -110,5 +158,7 @@ public class MainController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		setBalances (); //TODO make this only every "frame"
+		cc.getTime();
+
 	}
 }
