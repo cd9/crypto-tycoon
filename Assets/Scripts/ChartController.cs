@@ -88,6 +88,8 @@ public class ChartController : MonoBehaviour {
 					if (pc < minc)
 						minc = pc;
 				}
+				mc.CurrPrice = closec;
+				GameObject.Find("current_price").GetComponent<Text>().text = "PRICE: " +  System.Math.Round(closec, 2).ToString();
 			}
 
 			float factor = (chartHeight / (max - min));
