@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 438077318}
   - component: {fileID: 438077317}
   m_Layer: 0
-  m_Name: CandlestickController
+  m_Name: ChartController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,9 +625,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 438077316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72176d4f0ad8c10459419c7dc6a65990, type: 3}
+  m_Script: {fileID: 11500000, guid: 093375262b31c8d4990444e9bc5426f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chartWidth: 1000
+  chartHeight: 1500
+  divisions: 20
+  updatesPerSecond: 10
 --- !u!4 &438077318
 Transform:
   m_ObjectHideFlags: 0
@@ -1328,7 +1332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062470645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe64203828cfcc4898d8292bbb806b4, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ed713296a2e6c4792b7728e8cd2f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1062470647
@@ -2082,7 +2086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.388306, y: 3.2044067}
+  m_AnchoredPosition: {x: -66.388306, y: 3.2043457}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1658221668
