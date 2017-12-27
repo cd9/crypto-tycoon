@@ -24,14 +24,14 @@ public class ChartController : MonoBehaviour {
 	}
 
 	void updateChart(){
-		GameObject[] csToDelete = GameObject.FindGameObjectsWithTag ("candlestick");
-
-		foreach (GameObject cs in csToDelete){
-			GameObject.Destroy (cs); //get rid of old candlesticks
+		GameObject[] disposableGOs = GameObject.FindGameObjectsWithTag ("disposable");
+		 //should improve this to just change the current objects instead of disposing every time
+		foreach (GameObject go in disposableGOs){
+			GameObject.Destroy (go); //get rid of old candlesticks
 		}
 
 		float startX = (chartWidth / 2 * -1) + outline.GetComponent<RectTransform>().position.x;
-		float startY = outline.GetComponent<RectTransform>().position.y;
+		float startY = (chartHeight / 2 * -1) + outline.GetComponent<RectTransform>().position.y;
 		float min = Mathf.Infinity;
 		float max = Mathf.NegativeInfinity;
 		float[] nowData = new float[divisionsX];
@@ -44,8 +44,8 @@ public class ChartController : MonoBehaviour {
 
 		float mid = (max - min) / 2.0f;
 
-		for (int i = 0; i < divisionsX; i++) {
-			float yPos = (mid - nowData [i]) + startY;
+		for (int i = 1; i < divisionsX; i++) {
+			float yPos = startY + (chartHeight/(max-min)) * (currData.priceAt((int)(i+time))-min);
 			float xPos = startX + (chartWidth / divisionsX) * i;
 			GameObject candlestick = GameObject.Instantiate (Resources.Load<GameObject>("candlestick"));
 			candlestick.transform.SetParent(GameObject.Find("candlesticks").transform);
@@ -53,12 +53,15 @@ public class ChartController : MonoBehaviour {
 		}
 
 
-		for (int i = 0; i < divisionsY; i++) {
-			float yPos = startY - (( divisionsY / 2) + i) * chartHeight;
-			float xPos = startX;
+		for (int i = 1; i < divisionsY; i++) {
+			float yPos = startY + i*(chartHeight/divisionsY);
+			float xPos = startX + chartWidth/2.0f;
 			GameObject ydiv = GameObject.Instantiate (Resources.Load<GameObject>("ydiv"));
-			ydiv.transform.SetParent (GameObject.Find ("outline").transform);
+			Vector3 scale = ydiv.transform.localScale;
+			ydiv.transform.SetParent (GameObject.Find ("grid").transform);
+			ydiv.transform.localScale = scale;
 			ydiv.transform.position = new Vector3 (xPos, yPos);
+
 		}
 
 

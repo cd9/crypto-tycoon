@@ -629,9 +629,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chartWidth: 1000
-  chartHeight: 1500
-  divisions: 20
-  updatesPerSecond: 10
+  chartHeight: 700
+  divisionsX: 10
+  divisionsY: 10
+  updatesPerSecond: 150
 --- !u!4 &438077318
 Transform:
   m_ObjectHideFlags: 0
@@ -986,7 +987,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 994519431}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872406640
 GameObject:
@@ -1125,7 +1126,7 @@ Transform:
   m_Children:
   - {fileID: 1710039524}
   m_Father: {fileID: 994519431}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994519430
 GameObject:
@@ -1152,6 +1153,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 2.0731542}
   m_LocalScale: {x: 1.01, y: 1, z: 1}
   m_Children:
+  - {fileID: 1386152310}
   - {fileID: 990765573}
   - {fileID: 1572978194}
   - {fileID: 848570157}
@@ -1719,6 +1721,39 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1380794261}
+--- !u!1 &1386152309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1386152310}
+  m_Layer: 5
+  m_Name: grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1386152310
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1386152309}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.0731542}
+  m_LocalScale: {x: 0.6, y: 0.59999996, z: 1}
+  m_Children: []
+  m_Father: {fileID: 994519431}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -66.388245, y: 3.2043457}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1387097438
 Prefab:
   m_ObjectHideFlags: 0
@@ -2082,7 +2117,7 @@ RectTransform:
   - {fileID: 1302401922}
   - {fileID: 1164323297}
   m_Father: {fileID: 994519431}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
