@@ -5,6 +5,8 @@ There will be 20 days.
 
 # Bad Events
 
+-don't buy bitcoin after 7pm or you'll get hacked
+
 -bitcoin wallet gets hacked (you lose everything you didn't sell)
 
 -you get sick and need medicine
