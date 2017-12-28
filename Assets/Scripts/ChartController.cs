@@ -150,6 +150,7 @@ public class ChartController : MonoBehaviour {
 		msSince = msSince + (Time.fixedDeltaTime*1000);
 		if (updatesSince > updatesPerMove) {
 			time += updatesPerMove;
+			mc.setBalances ();
 			msSince = 0;
 			updatesSince = 1;
 			updateChart(updatesSince);

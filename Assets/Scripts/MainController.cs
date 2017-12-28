@@ -9,6 +9,7 @@ public class MainController : MonoBehaviour {
 	public float maxV = 30;
 	public float skewUp = 1.1f;
 	private Text USD, BTC, ETH, LTC;
+	private Text networth;
 	private float usdbalance = 1000;
 	private float btcbalance = 0;
 	private float increment = 1;
@@ -17,6 +18,7 @@ public class MainController : MonoBehaviour {
 	private bool sellEnabled = true;
 	public float disabledTimer = 3.0f;
 	private Text timer_text;
+	private Text clock_text;
 	public float dayLength = 120;
 	private ChartController cc;
 
@@ -99,18 +101,22 @@ public class MainController : MonoBehaviour {
 		BTC = GameObject.Find ("b_btc").GetComponent<Text> ();
 		ETH = GameObject.Find ("b_eth").GetComponent<Text> ();
 		LTC = GameObject.Find ("b_ltc").GetComponent<Text> ();
-		setBalances ();
+		networth = GameObject.Find ("networth").GetComponent<Text> ();
+		clock_text = GameObject.Find ("time_label").GetComponent<Text> ();
 		timer_text = GameObject.Find ("timer").GetComponent<Text> ();
 		cc = GameObject.Find ("ChartController").GetComponent<ChartController> ();
 
+		setBalances ();
 	}
 
-	void setBalances(){
+	public void setBalances(){
 		//TODO get these from save files
 		USD.text = System.Math.Round(usdbalance, 2).ToString() + " USD";
 		BTC.text = System.Math.Round (btcbalance, 2).ToString () + " BTC";
 		ETH.text = "0 ETH";
 		LTC.text = "0 LTC";
+		networth.text = "Net worth: $" + (System.Math.Round (usdbalance, 2) + System.Math.Round (btcbalance * currPrice, 2)).ToString ();
+
 	}
 
 	public void buy(){
@@ -154,11 +160,28 @@ public class MainController : MonoBehaviour {
 		buyEnabled = true;
 		sellEnabled = true;
 	}
+
+	public int getDay (){
+		return 1;
+		//TODO implement dayss
+	}
+
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		setBalances (); //TODO make this only every "frame"
-		cc.getTime();
+		int hour = cc.getTime()/25 + 8;
+		bool pm = false;
+		if (hour >= 24) {
+			//endDay
+		} else if (hour>12){
+			hour = hour - 12;
+			pm = true;
+		}
+		clock_text.text = hour.ToString () + ":00";
+		if (pm) clock_text.text = clock_text.text + "PM";
+		else clock_text.text = clock_text.text + "AM";
+
 
 	}
 }
