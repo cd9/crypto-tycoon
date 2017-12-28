@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class MainController : MonoBehaviour {
@@ -166,14 +167,25 @@ public class MainController : MonoBehaviour {
 		//TODO implement dayss
 	}
 
+	private IEnumerator endDay(){
+		float i = 0;
+		Image cover = GameObject.Find ("cover").GetComponent<Image> ();
+		while (i <255) {
+			i+=5;
+			cover.color = new Color32 (0, 0, 0, (byte)i);
+			yield return new WaitForSeconds (0.01f);
+		}
+		SceneManager.LoadScene ("dayover");
+	}
+
 
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		int hour = cc.getTime()/25 + 8;
 		bool pm = false;
-		if (hour >= 24) {
-			//endDay
+		if (hour >= 21) {
+			StartCoroutine (endDay ());
 		} else if (hour>12){
 			hour = hour - 12;
 			pm = true;

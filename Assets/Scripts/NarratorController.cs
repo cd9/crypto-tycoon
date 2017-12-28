@@ -16,8 +16,7 @@ public class NarratorController : MonoBehaviour {
 		header = GameObject.Find ("header").GetComponent<Text> ();
 		breakdown = GameObject.Find ("breakdown").GetComponent<Text> ();
 		cover = GameObject.Find ("cover").GetComponent<Image> ();
-		mc = GameObject.Find ("MainController").GetComponent<MainController> ();
-		day = mc.getDay ();
+		day = getDay ();
 		StartCoroutine (fullAnimation ());
 	}
 	
@@ -27,18 +26,22 @@ public class NarratorController : MonoBehaviour {
 	}
 
 	public IEnumerator fullAnimation(){
-		yield return new WaitForSeconds (2);
 		float i = 255;
 		while (i > 0) {
-			i--;
-			cover.color = new Color32 (255, 255, 255, i);
-			yield return new WaitForSeconds (0.01f);
+			cover.color = new Color32 (0, 0, 0, (byte)i);
+			print ("setting");
+			yield return new WaitForSeconds (0.001f);
+			i-=4;
 		}
 		yield return new WaitForSeconds (0.2f);
-		animateBox("Day "+day" over", header);
+		StartCoroutine(animateBox("Day "+day+" over", header));
 		yield return new WaitForSeconds(1);
-		animateBox(breakdownstring, breakdown);
+		StartCoroutine(animateBox(breakdownstring, breakdown));
 
+	}
+
+	private int getDay(){
+		return 1;
 	}
 
 	public IEnumerator animateBox(string s, Text t){ //i==1 for purchase text, 2 for select text, 3 for intro text
